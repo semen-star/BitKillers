@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+    opacity: 0;
+    animation: siteReveal 2s ease-out forwards;
+}
+
+@keyframes siteReveal {
+    0% { 
+        opacity: 0;
+        filter: brightness(0) blur(20px);
+    }
+    100% { 
+        opacity: 1;
+        filter: brightness(1) blur(0);
+    }
+}
+
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: hue-rotate(300deg) contrast(200%) brightness(0.7);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #ff0000;
+    text-align: center;
+    position: relative;
+    opacity: 0;
+    animation: contentAppear 1.5s 1s forwards;
+    padding: 20px;
+}
+
+@keyframes contentAppear {
+    to { opacity: 1; }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        transform: scale(0.9);
+    }
+    
+    .logo {
+        transform: scale(0.8) !important;
+    }
+    
+    .logo-text {
+        font-size: 3rem !important;
+        padding: 20px 30px !important;
+    }
+    
+    .tagline {
+        font-size: 1.2rem !important;
+        padding: 15px 25px !important;
+        margin-top: 30px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 2.2rem !important;
+        padding: 15px 20px !important;
+        letter-spacing: 2px !important;
+    }
+    
+    .tagline {
+        font-size: 1rem !important;
+        padding: 12px 20px !important;
+    }
+}
+
+.logo {
+    position: relative;
+    z-index: 100;
+    transform: skew(-5deg) scale(0.8);
+    animation: 
+        monsterReveal 2s 1.5s forwards,
+        monsterFloat 8s infinite ease-in-out 3.5s;
+}
+
+.logo-text {
+    font-size: 5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Audiowide', 'Orbitron', sans-serif;
+    background: linear-gradient(45deg, #000 30%, #1a0000 100%);
+    padding: 30px 50px;
+    border: 4px solid #ff0000;
+    border-radius: 5px;
+    box-shadow: 
+        0 0 60px #ff0000,
+        0 0 120px #ff0000,
+        inset 0 0 30px rgba(255, 0, 0, 0.2);
+    text-shadow: 
+        4px 4px 0 #000,
+        8px 8px 0 #400000,
+        0 0 40px #ff0000,
+        0 0 80px #ff0000;
+    letter-spacing: 4px;
+    display: block;
+    position: relative;
+    animation: monsterPulse 4s infinite 3.5s;
+}
+
+/* Металлические когти/шипы */
+.logo-claw {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: 
+        radial-gradient(circle at 10% 10%, transparent 50%, #ff0000 51%, transparent 52%),
+        radial-gradient(circle at 90% 10%, transparent 50%, #ff0000 51%, transparent 52%),
+        radial-gradient(circle at 10% 90%, transparent 50%, #ff0000 51%, transparent 52%),
+        radial-gradient(circle at 90% 90%, transparent 50%, #ff0000 51%, transparent 52%);
+    pointer-events: none;
+    z-index: 101;
+}
+
+@keyframes monsterReveal {
+    0% {
+        transform: skew(-5deg) scale(0.8) translateY(100px);
+        opacity: 0;
+        filter: blur(10px);
+    }
+    60% {
+        transform: skew(-5deg) scale(1.1) translateY(-20px);
+        opacity: 1;
+        filter: blur(0);
+    }
+    100% {
+        transform: skew(-5deg) scale(1) translateY(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes monsterPulse {
+    0%, 100% { 
+        box-shadow: 
+            0 0 60px #ff0000,
+            0 0 120px #ff0000;
+        border-color: #ff0000;
+    }
+    50% { 
+        box-shadow: 
+            0 0 100px #ff0000,
+            0 0 200px #ff0000,
+            0 0 300px #ff0000;
+        border-color: #ff3333;
+        text-shadow: 
+            4px 4px 0 #000,
+            8px 8px 0 #400000,
+            0 0 60px #ff0000,
+            0 0 120px #ff0000;
+    }
+}
+
+@keyframes monsterFloat {
+    0%, 100% { transform: skew(-5deg) translateY(0) rotate(0deg); }
+    25% { transform: skew(-6deg) translateY(-15px) rotate(-1deg); }
+    50% { transform: skew(-4deg) translateY(-8px) rotate(1deg); }
+    75% { transform: skew(-6deg) translateY(-12px) rotate(0deg); }
+}
+
+.tagline {
+    margin-top: 40px;
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px 35px;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    position: relative;
+    z-index: 100;
+    font-weight: bold;
+    font-family: 'Russo One', sans-serif;
+    letter-spacing: 3px;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: taglineAppear 1.5s 2.5s forwards;
+}
+
+@keyframes taglineAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.energy-crackle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 80;
+    opacity: 0;
+    animation: crackleAppear 1s 2s forwards;
+}
+
+.crackle-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #ff0000, transparent);
+    animation: energyFlow 3s linear infinite;
+    box-shadow: 0 0 20px #ff0000;
+}
+
+@keyframes energyFlow {
+    0% { 
+        height: 2px;
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    50% { 
+        opacity: 1;
+    }
+    100% { 
+        height: 1px;
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.static-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(255, 0, 0, 0.03) 0px,
+            rgba(255, 0, 0, 0.03) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+    pointer-events: none;
+    z-index: 90;
+    animation: staticFlicker 0.1s infinite;
+    opacity: 0.3;
+}
+
+@keyframes staticFlicker {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+}
+
+.impact-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ff0000;
+    opacity: 0;
+    z-index: 200;
+    pointer-events: none;
+    animation: impactFlash 0.3s 1s;
+}
+
+@keyframes impactFlash {
+    0% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
